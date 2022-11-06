@@ -6,7 +6,7 @@
     
   vars:
     csvfile: >-
-      #{repo_path}#/_Cost_Optimization_Repo/Cost_Optimization_scripts/#{csvfilename}#.csv
+      #{repo_path}#/_Cost_Optimization/#{csvfilename}#.csv
   
   tasks:
     - name: AZ Login
