@@ -1,0 +1,22 @@
+---
+- name: Starting the k8s clusters
+  hosts: localhost
+  become: true
+  # become_user: azureuser
+    
+  vars:
+    csvfile: >-
+      #{repo_path}#/_Cost_Optimization/#{csvfilename}#.csv
+  
+  tasks:
+    - name: AZ Login
+      command: az login --service-principal --username #{ARM_CLIENT_ID}# --password #{ARM_CLIENT_SECRET}# --tenant #{ARM_TENANT_ID}#
+      register: ps
+    - debug: var=ps.stdout_lines
+ 
+
+    - name: Starting the Clusters
+      command: sh aksstart.sh {{csvfile}}
+      register: ps
+    - debug: var=ps.stdout_lines
+      ignore_errors: yes
